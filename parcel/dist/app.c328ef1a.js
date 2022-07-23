@@ -44217,7 +44217,6 @@ function init() {
   ground.rotation.x = -Math.PI / 2;
   ground.receiveShadow = true;
   scene.add(ground);
-  column;
   var column = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 2.8, 32), bellMaterial);
   column.position.y = 0;
   column.castShadow = true;

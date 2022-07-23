@@ -44228,7 +44228,7 @@ function init() {
   //   dracoLoader.setDecoderPath( '/examples/js/libs/draco/' );
   //   loader.setDRACOLoader( dracoLoader );
 
-  loader.load("./watermelon.gltf", function (gltf) {
+  loader.load("https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/models/gltf/AnimatedMorphSphere/glTF/AnimatedMorphSphere.gltf", function (gltf) {
     scene.add(gltf.scene);
   }); //   },
   //   undefined, function ( error ) {

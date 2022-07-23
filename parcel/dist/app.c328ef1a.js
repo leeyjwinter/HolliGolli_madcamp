@@ -40429,7 +40429,7 @@ init();
 animate();
 
 function init() {
-  var container = document.createElement('div');
+  var container = document.createElement("div");
   document.body.appendChild(container); // scene
 
   scene = new THREE.Scene();
@@ -40440,9 +40440,9 @@ function init() {
   // It reproduced on at least NVIDIA GTX 1080 and GTX 1050 Ti GPUs when the ground plane was not
   // subdivided into segments.
 
-  camera.position.x = 7;
-  camera.position.y = 13;
-  camera.position.z = 7;
+  camera.position.x = 20;
+  camera.position.y = 18;
+  camera.position.z = 0;
   scene.add(camera); // lights
 
   scene.add(new THREE.AmbientLight(0x666666));
@@ -40460,15 +40460,15 @@ function init() {
   scene.add(group);
   var geometry = new THREE.SphereGeometry(0.3, 20, 20);
 
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < 5; i++) {
     var material = new THREE.MeshPhongMaterial({
       color: Math.random() * 0xffffff
     });
     var sphere = new THREE.Mesh(geometry, material);
-    sphere.position.x = Math.random() - 0.5;
-    sphere.position.z = Math.random() - 0.5;
-    sphere.position.normalize();
-    sphere.position.multiplyScalar(Math.random() * 2 + 1);
+    sphere.position.x = 5;
+    sphere.position.z = 0; // sphere.position.normalize();
+    // sphere.position.multiplyScalar( Math.random() * 2 + 1 );
+
     sphere.castShadow = true;
     sphere.receiveShadow = true;
     sphere.userData.phase = Math.random() * Math.PI;
@@ -40492,8 +40492,8 @@ function init() {
   scene.add(column); // overwrite shadowmap code
 
   var shader = THREE.ShaderChunk.shadowmap_pars_fragment;
-  shader = shader.replace('#ifdef USE_SHADOWMAP', '#ifdef USE_SHADOWMAP' + document.getElementById('PCSS').textContent);
-  shader = shader.replace('#if defined( SHADOWMAP_TYPE_PCF )', document.getElementById('PCSSGetShadow').textContent + '#if defined( SHADOWMAP_TYPE_PCF )');
+  shader = shader.replace("#ifdef USE_SHADOWMAP", "#ifdef USE_SHADOWMAP" + document.getElementById("PCSS").textContent);
+  shader = shader.replace("#if defined( SHADOWMAP_TYPE_PCF )", document.getElementById("PCSSGetShadow").textContent + "#if defined( SHADOWMAP_TYPE_PCF )");
   THREE.ShaderChunk.shadowmap_pars_fragment = shader; // renderer
 
   renderer = new THREE.WebGLRenderer({
@@ -40516,7 +40516,7 @@ function init() {
   // container.appendChild( stats.dom );
   //
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener("resize", onWindowResize);
 } //
 
 
@@ -40529,16 +40529,29 @@ function onWindowResize() {
 
 function animate() {
   var time = performance.now() / 1000;
+  console.log(time);
   group.traverse(function (child) {
-    if ('phase' in child.userData) {
+    if ("phase" in child.userData) {
       child.position.y = Math.abs(Math.sin(time + child.userData.phase)) * 4 + 0.3;
+      console.log(child.userData.phase);
+      child.position.z = time - 8;
+
+      if (time > 8) {
+        child.position.z = 0;
+      }
+
+      child.position.x = time - 8;
+
+      if (time > 8) {
+        child.position.x = 0;
+      }
     }
   });
   renderer.render(scene, camera); // stats.update();
 
   requestAnimationFrame(animate);
 }
-},{"three":"../../../node_modules/three/build/three.module.js","three/examples/jsm/controls/OrbitControls.js":"../../../node_modules/three/examples/jsm/controls/OrbitControls.js"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"../../../node_modules/three/build/three.module.js","three/examples/jsm/controls/OrbitControls.js":"../../../node_modules/three/examples/jsm/controls/OrbitControls.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -40566,7 +40579,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62567" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51595" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -40742,5 +40755,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.js"], null)
+},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.js"], null)
 //# sourceMappingURL=/app.c328ef1a.js.map

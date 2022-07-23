@@ -44209,13 +44209,17 @@ function init() {
     color: 0x404040,
     specular: 0x111111
   });
+  var bellMaterial = new THREE.MeshPhongMaterial({
+    color: 0xFFFFFF,
+    specular: 0x111111
+  });
   var ground = new THREE.Mesh(new THREE.PlaneGeometry(20000, 20000, 8, 8), groundMaterial);
   ground.rotation.x = -Math.PI / 2;
   ground.receiveShadow = true;
-  scene.add(ground); // column
-
-  var column = new THREE.Mesh(new THREE.BoxGeometry(1, 4, 1), groundMaterial);
-  column.position.y = 2;
+  scene.add(ground);
+  column;
+  var column = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 2.8, 32), bellMaterial);
+  column.position.y = 0;
   column.castShadow = true;
   column.receiveShadow = true;
   scene.add(column); //bell
@@ -44224,7 +44228,7 @@ function init() {
   //   dracoLoader.setDecoderPath( '/examples/js/libs/draco/' );
   //   loader.setDRACOLoader( dracoLoader );
 
-  loader.load("https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/models/gltf/Soldier.glb", function (gltf) {
+  loader.load("./watermelon.gltf", function (gltf) {
     scene.add(gltf.scene);
   }); //   },
   //   undefined, function ( error ) {

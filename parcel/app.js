@@ -218,7 +218,7 @@ function init() {
   // } );
 
   // overwrite shadowmap code
-
+  //
   let shader = THREE.ShaderChunk.shadowmap_pars_fragment;
 
   shader = shader.replace(

@@ -44234,6 +44234,7 @@ function init() {
   //    console.error( error );
   // } );
   // overwrite shadowmap code
+  //
 
   var shader = THREE.ShaderChunk.shadowmap_pars_fragment;
   shader = shader.replace("#ifdef USE_SHADOWMAP", "#ifdef USE_SHADOWMAP" + document.getElementById("PCSS").textContent);
